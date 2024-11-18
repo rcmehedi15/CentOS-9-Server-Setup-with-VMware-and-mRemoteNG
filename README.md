@@ -1,10 +1,6 @@
-Here’s a well-structured **README.md** file for your GitHub project:
-
----
-
 # CentOS 9 Server Setup with VMware and mRemoteNG
 
-This guide provides step-by-step instructions to set up a CentOS 9 server on VMware Workstation, configure networking, enable SSH, and connect using mRemoteNG.
+This guide provides step-by-step instructions to set up a CentOS 9 server on VMware Workstation, configure networking (including changing the connection name), enable SSH, and connect using mRemoteNG.
 
 ---
 
@@ -13,6 +9,7 @@ This guide provides step-by-step instructions to set up a CentOS 9 server on VMw
 - [VMware Workstation Installation](#vmware-workstation-installation)
 - [CentOS 9 Installation](#centos-9-installation)
 - [NMCLI Configuration](#nmcli-configuration)
+- [Change Connection Name](#change-connection-name)
 - [Enable NMCLI](#enable-nmcli)
 - [Switch to Root User](#switch-to-root-user)
 - [SSH Installation and Configuration](#ssh-installation-and-configuration)
@@ -64,6 +61,30 @@ This guide provides step-by-step instructions to set up a CentOS 9 server on VMw
    BOOTPROTO=dhcp
    DEVICE=ens33
    ONBOOT=yes
+   ```
+
+---
+
+### **Change Connection Name**
+
+1. Find the current connection name:
+   ```bash
+   nmcli con show
+   ```
+   Example output:
+   ```plaintext
+   NAME                UUID                                  TYPE      DEVICE
+   Wired connection 1  12345678-90ab-cdef-1234-567890abcdef  ethernet  ens33
+   ```
+
+2. Change the connection name:
+   ```bash
+   nmcli con modify "Wired connection 1" connection.id "new_connection_name"
+   ```
+
+3. Verify the change:
+   ```bash
+   nmcli con show
    ```
 
 ---
@@ -179,4 +200,4 @@ Enter the root password when prompted.
 
 ---
 
-This documentation should help you set up and manage your CentOS 9 server with VMware and mRemoteNG. If you encounter issues, feel free to create an issue in this repository!
+This documentation includes the steps for renaming network connections, enabling SSH, and connecting using mRemoteNG. Let me know if more details are required!
